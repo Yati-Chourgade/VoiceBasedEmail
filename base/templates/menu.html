@@ -1,0 +1,64 @@
+{% load static %}
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">  
+<title>MENU PAGE</title>
+<!--link rel="stylesheet" href="../css/inbox.css"-->
+<link rel="stylesheet" type="text/css" href="{% static 'css/inbox.css'%}">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		
+</head>
+
+
+	<body onmousedown = "SendPostRequestOptions(event)">
+<div class="wrap">
+
+		<div class="heading">
+		<h2>VOICE BASED EMAIL FOR BLIND </h2>
+	</div>
+		
+	<div class="head1">
+		<h1 style="text-align:center">What would you like to Do?</h1>
+		
+	</div>
+
+	<ul class= "options"> 
+		<li><a href ="{% url 'base:compose' %} ">COMPOSE</a></li>
+		<li><a href ="{% url 'base:inbox' %}">INBOX</a></li>
+		<li><a href ="{% url 'base:sent' %} ">SENT</a></li>
+		<li><a href ="{% url 'base:trash' %} ">TRASH</a></li>
+		<li><a href ="{% url 'base:login' %}">LOGOUT</a></li>
+	</ul>
+</div>
+<script>
+	function SendPostRequestOptions(event){
+		$.ajax({
+        url: "{% url 'base:menu' %}",
+        method: 'POST',
+        data: { 'csrfmiddlewaretoken': '{{ csrf_token }}'},
+        success: function (data) {
+			if(data.result == 'compose'){
+				window.location = "{% url 'base:compose' %}";
+			}
+			else if(data.result == 'sent'){
+				window.location = "{% url 'base:sent' %}";
+			}	
+			else if(data.result == 'inbox'){
+				window.location = "{% url 'base:inbox' %}";
+			}
+			else if(data.result == 'trash'){
+				window.location = "{% url 'base:trash' %}";
+			}
+			else if(data.result == 'logout'){
+				window.location = "{% url 'base:login' %}";
+			}
+			else if(data.result == 'failure'){
+				window.location = "{% url 'base:menu' %}";
+			}
+        }
+    });
+	}
+	</script>
+</body>
+</html>

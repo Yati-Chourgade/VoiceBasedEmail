@@ -1,0 +1,70 @@
+{% load static %}
+<html>
+<head>
+<!--meta name="viewport" content="width=device-width, initial-scale=1.0"-->  
+	<title>COMPOSE</title>
+	<link rel="stylesheet" type="text/css" href="{% static 'css/compose.css' %}" >
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	
+</head>
+
+<body onmousedown = "WhichButtonCompose(event)">
+	<div class= "center" >
+		<div class="heading">
+		<h2>VOICE BASED EMAIL FOR BLIND </h2>
+		</div>
+			<div class="container">
+				<div class="text"> COMPOSE </div>
+				<form id ="here">
+
+					<script> 
+						$(document).ready(function(){
+						setInterval(function(){
+							  $("#here").load(window.location.href + " #here" );
+						}, 1000);
+						});
+						</script>
+
+
+					<div class="data">
+						<label>Recipient Email Id</label>
+						<input placeholder="Enter recipient's email id "required value="{{compose.recipient}}">
+					</div>
+					<div class="data">
+						<label>Subject</label>
+						<input placeholder="Enter Subject of mail " type="text" required value="{{compose.subject}}"> 
+					</div>
+					<div class="data" id="b1">
+						<label>Body</label>
+						<!-- <input placeholder="Enter body of the mail" type="text"> -->
+						<textarea rows="15" cols="50" placeholder="Enter body of mail"placeholder="Type Message"required value="{{compose.body}}"></textarea></textarea>
+					</div>
+					<div class="btn">
+						<div class="inner"></div>
+						<button type ="submit">SEND</button>
+					</div>
+				</form>
+			</div>
+	</div>
+			
+	<script>
+		function WhichButtonCompose(event){
+			$.ajax({
+			url: "{% url 'base:compose' %}",
+			method: 'POST',
+			data: { 'csrfmiddlewaretoken': '{{ csrf_token }}'},
+			success: function (data) {
+				if(data.result == 'success'){
+					window.location = "{% url 'base:menu' %}";
+				}
+				else if(data.result == 'failure'){
+					window.location = "{% url 'base:compose' %}";
+				}
+			}
+		});
+		}
+	</script>
+
+</body>
+</html>

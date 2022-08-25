@@ -1,0 +1,73 @@
+{% load static %}
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">  
+	<title>LOGIN</title>
+	<!--link rel="stylesheet" href = "../css/login.css"-->
+	<link rel="stylesheet" type="text/css" href="{% static 'css/index.css'%}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<!--script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+	<script src="{% static 'js/jquery.min.js' %}"></script-->
+
+</head>
+
+<body onmousedown = "SendPostRequestHome(event)" >
+	<div class= "center" >
+		<div class="heading">
+		<h2>VOICE BASED EMAIL FOR BLIND </h2>
+	</div>
+			<div class="container">
+				<div class="text"> Login </div>
+				<form action ="menu.html" method="POST">
+				
+				
+					<div class="data" id ="here">
+						<script> 
+							$(document).ready(function(){
+							setInterval(function(){
+								  $("#here").load(window.location.href + " #here" );
+							}, 1000);
+							});
+							</script>
+						
+						{% csrf_token %}
+						<label>Email Id</label>
+						<input type="text"placeholder="Email" name="email"required value={{detail.email}} >
+					</div>
+					<div class="data">
+						<label>Password</label>
+						<input type="password"placeholder="Password" name="password"required value={{detail.password}} >
+					</div>
+					<div class="btn">
+						<div class="inner"></div>
+						<button input href="menu.html" type ="submit">login</button>
+					</div>
+				</form>
+			</div>
+	</div>
+	<script>
+		
+		function SendPostRequestHome(event){
+			
+			$.ajax({
+			url: "{% url 'base:login' %}",
+			method: "POST",
+			data: { 'csrfmiddlewaretoken': '{{ csrf_token }}'},
+			success: function (data) {
+				
+				if(data.result == "success"){
+					
+					window.location = "{% url 'base:menu' %}";
+				}
+				else if(data.result == "failure"){
+					window.location = "{% url 'base:login' %}";
+				}
+			}
+		});
+		}
+		</script>	
+
+
+</body>
+</html>
+

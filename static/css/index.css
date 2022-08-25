@@ -1,0 +1,101 @@
+*{
+    margin:0;
+    padding:0;
+    outline:none;
+    box-sizing:border-box;
+    font-family:'Poppons' ,sans-serif ;
+    }
+    
+    body{
+    height:100vh;
+    width:100%;
+    /*background:linear-gradient(-135deg,#D5F3FE,#FFC1D7);*/
+    background:linear-gradient(-135deg ,#8C9EFF,#1A237E);
+    }
+    .heading
+    {
+        /*background:#666666;*/
+        width:600px;
+        padding:10px;
+        position:relative;
+        left:29%;
+        
+    }
+    .heading h2
+    {
+        font-size :35px;
+        font-weight:600;
+        text-align:center;
+        color:#fff;
+            
+    }
+    
+    .container
+    {
+        position:absolute;
+        top:20%;
+        left:35%;
+        
+    }
+    .container
+    {
+        background:#fff;
+        width:410px;
+        padding:30px;
+        /*box-shadow:0 0 8px rgba(0,0,0,0.1);*/
+    box-shadow: 0 -2px 10px rgba(0,0,0,1);	
+    }
+    .container .text
+    {
+    font-size :35px;
+    font-weight:600;
+    text-align:center;
+    color:#3F51B5;	
+    }
+    
+    .container form
+    {
+        margin-top :-20px;
+        
+    }
+    .container form .data
+    {
+        height:45px;
+        width:100%;
+        margin:40px 0;
+    }
+    form .data label
+    {
+        font-size:18px;
+    color:#3F51B5;
+    }
+    
+    form .data input
+    {
+        height:100%;
+        width:100%;
+        padding-left:10px;
+        font-size:17px;
+        border:1px solid lightgrey;
+        
+    }
+    form .btn 
+    {
+        margin :2px;
+        height:45px;
+        width:100%;
+    }
+    
+    form .btn button
+    {
+        height:100%;
+        width:100%;
+        font-size:18px;
+        font-weight:500;
+        text-transform:uppercase;
+        letter-spacing:1px;
+        cursor:pointer;
+        padding-left:10px;
+        border:1px solid lightgrey;
+    }
+    
